@@ -2,35 +2,61 @@ name: 'SWM GitHub Actions Basic'
 
 on: push
 
+env:
+  GLOBAL_LEVEL: "This value comes from the GLOBAL_LEVEL level"
+
 jobs:
   first-job:
     name: 'First Job'
 
     runs-on: ubuntu-latest
 
+    env:
+      JOB_LEVEL_1: "JOB LEVEL VALUE 1"
+
     steps:
-    - name: Say Hello World 1
+    - name: Say Hello World
       shell: bash
+      env:
+        STEP_LEVEL_1: "STEP level 1"
       run: |
         echo "Hello World from step 1"
 
-    - name: Say Hello World 2
+    - name: Check environment variables 1
       shell: pwsh
+      env:
+        STEP_LEVEL_2: "STEP level 2"
       run: |
         echo "Hello World from step 2"
+        echo "workflow level: $env:GLOBAL_LEVEL"
+        echo "job level: ${{ env.JOB_LEVEL_1 }}"
+        echo "job level: ${{ env.JOB_LEVEL_2 }}"
+        echo "job level: ${{ env.STEP_LEVEL_1 }}"
+        echo "job level: ${{ env.STEP_LEVEL_2 }}"
+        echo "job level: ${{ env.STEP_LEVEL_3 }}"
+        echo "job level: ${{ env.STEP_LEVEL_4 }}"
+
 
   second-job:
     name: 'Second Job'
+
+    env:
+      JOB_LEVEL_2: "JOB LEVEL VALUE 2"
 
     runs-on: ubuntu-latest
 
     steps:
     - name: Say Hello World 1
       shell: bash
+      env:
+        STEP_LEVEL_3: "STEP level 3"
       run: |
-        echo "Hello World from step 1"
+        echo "Hello World from step 3"
 
     - name: Say Hello World 2
       shell: pwsh
+      env:
+        STEP_LEVEL_4: "STEP level 4"
       run: |
-        echo "Hello World from step 2"
+        echo "Hello World from step 4"
+        echo "workflow level: $env:GLOBAL_LEVEL"
