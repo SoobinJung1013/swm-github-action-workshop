@@ -32,7 +32,7 @@ jobs:
 
     - name: Send message from customer
 
-      uses: .@main
+      uses: ./Dockerfile
       with: 
         webexToken: ${{ secrets.WEBEX_ACCESS_TOKEN }}
         webexRoomId: ${{ secrets.WEBEX_ROOM_ID }}
