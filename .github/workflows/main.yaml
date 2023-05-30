@@ -2,9 +2,6 @@ name: 'SWM GitHub Actions Basic'
 
 on: push
 
-env:
-  GLOBAL_LEVEL: "This value comes from the GLOBAL_LEVEL level"
-
 jobs:
   first-job:
     name: 'First Job'
@@ -33,7 +30,7 @@ jobs:
 
     - name: Say Hello World 1-2-${{ matrix.os }}
       shell: pwsh
-      if: matrix.os == 'windows-latest'
+      if: matrix.os == 'windows-latest' && matrix.nodejs == '16'
       run: |
         echo "Hello World from step 2"
         echo "Window environment"
@@ -41,30 +38,3 @@ jobs:
         echo "OS : ${{ matrix.os }}"
         echo "nodejs version: ${{ matrix.nodejs }}"
 
-
-  second-job:
-    name: 'Second Job'
-
-    env:
-      JOB_LEVEL_2: "JOB LEVEL VALUE 2"
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Say Hello World 2-1
-      shell: bash
-      env:
-        STEP_LEVEL_3: "STEP level 3"
-      run: |
-        echo "Hello World from step 3"
-        echo "${{ steps.API_KEY }}"
-        echo "global level: $GLOBAL_LEVEL"
-
-
-    - name: Say Hello World 2-2
-      shell: pwsh
-      env:
-        STEP_LEVEL_4: "STEP level 4"
-      run: |
-        echo "Hello World from step 4"
-        echo "global level: $env:GLOBAL_LEVEL"
