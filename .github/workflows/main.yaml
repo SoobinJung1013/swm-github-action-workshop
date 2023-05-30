@@ -15,23 +15,23 @@ jobs:
       JOB_LEVEL_1: "JOB LEVEL VALUE 1"
 
     steps:
-    - name: Say Hello World
+    - name: Say Hello World 1-1
       shell: bash
       env:
         STEP_LEVEL_1: "STEP level 1"
       run: |
         echo "Hello World from step 1"
         random_value="swm$(echo $RANDOM)"
-        echo "STEP_VALUE= $random_value" >> $GITHUB_ENV
+        echo "STEP_VALUE= $random_value" >> $GITHUB_OUTPUT
 
-    - name: Check environment variables 1
+    - name: Say Hello World 1-2
       shell: pwsh
       env:
         STEP_LEVEL_2: "STEP level 2"
       run: |
         echo "Hello World from step 2"
-        echo "STEP_VALUE: ${{ env.STEP_VALUE }}"
-        
+        echo "STEP_VALUE: ${{ steps.helloworld1.outputs.STEP_VALUE }}"
+
 
 
   second-job:
@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Say Hello World 1
+    - name: Say Hello World 2-1
       shell: bash
       env:
         STEP_LEVEL_3: "STEP level 3"
@@ -57,7 +57,7 @@ jobs:
         echo "job level: ${{ env.STEP_LEVEL_3 }}"
         echo "job level: ${{ env.STEP_LEVEL_4 }}"
 
-    - name: Say Hello World 2
+    - name: Say Hello World 2-2
       shell: pwsh
       env:
         STEP_LEVEL_4: "STEP level 4"
