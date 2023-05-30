@@ -13,7 +13,7 @@ jobs:
       matrix:
         os: ['ubuntu-latest', 'windows-latest', 'macos-latest']
         nodejs: ['16', '18']
-        
+
     runs-on: ${{ matrix.os }}
 
     env:
@@ -28,7 +28,7 @@ jobs:
         echo "Hello World from step 1"
 
         echo "OS : ${{ matrix.os }}"
-        echo "nodejs version: ${{ maxrix.nodejs }}"
+        echo "nodejs version: ${{ matrix.nodejs }}"
 
     - name: Say Hello World 1-2
       shell: pwsh
