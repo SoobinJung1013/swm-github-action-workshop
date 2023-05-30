@@ -21,13 +21,8 @@ jobs:
         STEP_LEVEL_1: "STEP level 1"
       run: |
         echo "Hello World from step 1"
-        echo "global level: $GLOBAL_LEVEL"
-        echo "job level: ${{ env.JOB_LEVEL_1 }}"
-        echo "job level: ${{ env.JOB_LEVEL_2 }}"
-        echo "job level: ${{ env.STEP_LEVEL_1 }}"
-        echo "job level: ${{ env.STEP_LEVEL_2 }}"
-        echo "job level: ${{ env.STEP_LEVEL_3 }}"
-        echo "job level: ${{ env.STEP_LEVEL_4 }}"
+        random_value="swm$(echo $RANDOM)"
+        echo "STEP_VALUE= $random_value" >> $GITHUB_ENV
 
     - name: Check environment variables 1
       shell: pwsh
@@ -35,13 +30,8 @@ jobs:
         STEP_LEVEL_2: "STEP level 2"
       run: |
         echo "Hello World from step 2"
-        echo "global level: $env:GLOBAL_LEVEL"
-        echo "job level: ${{ env.JOB_LEVEL_1 }}"
-        echo "job level: ${{ env.JOB_LEVEL_2 }}"
-        echo "job level: ${{ env.STEP_LEVEL_1 }}"
-        echo "job level: ${{ env.STEP_LEVEL_2 }}"
-        echo "job level: ${{ env.STEP_LEVEL_3 }}"
-        echo "job level: ${{ env.STEP_LEVEL_4 }}"
+        echo "STEP_VALUE: ${{ env.STEP_VALUE }}"
+        
 
 
   second-job:
