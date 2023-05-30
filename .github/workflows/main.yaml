@@ -32,7 +32,7 @@ jobs:
     - name: Send message from customer
       uses: .github/actions@main
       with: 
-        webexToken: ${{ secrests.WEBEX_ACCESS_TOKEN }}
+        webexToken: ${{ secrets.WEBEX_ACCESS_TOKEN }}
         webexRoomId: ${{ secrets.WEBEX_ROOM_ID }}
         bodyText: 'Message sent by Github Actions from ${{ github.repository }}✨'
         bodyMarkdown: '**actions from ${{ github.repository }} 🐳'
