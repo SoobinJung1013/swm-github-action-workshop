@@ -12,7 +12,7 @@ jobs:
       run: |
         echo "Hello World Build N Test"
         curl -X POST 'https://webexapis.com/v1/messages' \
-          -H 'Authorization: Bearer ${{ secrets.WEBX_ACCESS_TOKEN }}' \
+          -H 'Authorization: Bearer ${{ secrets.WEBEX_ACCESS_TOKEN }}' \
           -H 'Content-type: application/json' \
           -d '{
             {
