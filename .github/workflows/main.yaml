@@ -20,7 +20,7 @@ jobs:
         echo "Hello World from step 2"
 
   second-job:
-    name: 'First Job'
+    name: 'Second Job'
 
     runs-on: ubuntu-latest
 
