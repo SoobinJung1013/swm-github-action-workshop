@@ -17,5 +17,5 @@ jobs:
           -d '{
             {
               "roomId": "${{ secrets.WEBEX_ROOM_ID }}"",
-              "text": "스타벅스 ☕️ - FROM GITHUB ACTION ✨"
+              "text": "스타벅스 ☕️☕️☕️ - FROM GITHUB ACTION ✨"
           }'
