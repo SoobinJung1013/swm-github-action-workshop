@@ -21,7 +21,11 @@ jobs:
         STEP_LEVEL_1: "STEP level 1"
       run: |
         echo "Hello World from step 1"
+
         random_value="swm$(echo $RANDOM)"
+
+        echo "::add-mask::$random_value"
+
         echo "STEP_VALUE= $random_value" >> $GITHUB_OUTPUT
 
     - name: Say Hello World 1-2
