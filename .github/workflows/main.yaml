@@ -21,6 +21,13 @@ jobs:
         STEP_LEVEL_1: "STEP level 1"
       run: |
         echo "Hello World from step 1"
+        echo "global level: $GLOBAL_LEVEL"
+        echo "job level: ${{ env.JOB_LEVEL_1 }}"
+        echo "job level: ${{ env.JOB_LEVEL_2 }}"
+        echo "job level: ${{ env.STEP_LEVEL_1 }}"
+        echo "job level: ${{ env.STEP_LEVEL_2 }}"
+        echo "job level: ${{ env.STEP_LEVEL_3 }}"
+        echo "job level: ${{ env.STEP_LEVEL_4 }}"
 
     - name: Check environment variables 1
       shell: pwsh
@@ -28,7 +35,7 @@ jobs:
         STEP_LEVEL_2: "STEP level 2"
       run: |
         echo "Hello World from step 2"
-        echo "workflow level: $env:GLOBAL_LEVEL"
+        echo "global level: $env:GLOBAL_LEVEL"
         echo "job level: ${{ env.JOB_LEVEL_1 }}"
         echo "job level: ${{ env.JOB_LEVEL_2 }}"
         echo "job level: ${{ env.STEP_LEVEL_1 }}"
@@ -52,6 +59,13 @@ jobs:
         STEP_LEVEL_3: "STEP level 3"
       run: |
         echo "Hello World from step 3"
+        echo "global level: $GLOBAL_LEVEL"
+        echo "job level: ${{ env.JOB_LEVEL_1 }}"
+        echo "job level: ${{ env.JOB_LEVEL_2 }}"
+        echo "job level: ${{ env.STEP_LEVEL_1 }}"
+        echo "job level: ${{ env.STEP_LEVEL_2 }}"
+        echo "job level: ${{ env.STEP_LEVEL_3 }}"
+        echo "job level: ${{ env.STEP_LEVEL_4 }}"
 
     - name: Say Hello World 2
       shell: pwsh
@@ -59,4 +73,10 @@ jobs:
         STEP_LEVEL_4: "STEP level 4"
       run: |
         echo "Hello World from step 4"
-        echo "workflow level: $env:GLOBAL_LEVEL"
+        echo "global level: $env:GLOBAL_LEVEL"
+        echo "job level: ${{ env.JOB_LEVEL_1 }}"
+        echo "job level: ${{ env.JOB_LEVEL_2 }}"
+        echo "job level: ${{ env.STEP_LEVEL_1 }}"
+        echo "job level: ${{ env.STEP_LEVEL_2 }}"
+        echo "job level: ${{ env.STEP_LEVEL_3 }}"
+        echo "job level: ${{ env.STEP_LEVEL_4 }}"
