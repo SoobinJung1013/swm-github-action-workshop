@@ -20,7 +20,8 @@ jobs:
       JOB_LEVEL_1: "JOB LEVEL VALUE 1"
 
     steps:
-    - name: Say Hello World 1-1
+    - name: Say Hello World 1-1-${{ matrix.os }}
+      
       shell: bash
       env:
         STEP_LEVEL_1: "STEP level 1"
@@ -30,13 +31,15 @@ jobs:
         echo "OS : ${{ matrix.os }}"
         echo "nodejs version: ${{ matrix.nodejs }}"
 
-    - name: Say Hello World 1-2
+    - name: Say Hello World 1-2-${{ matrix.os }}
       shell: pwsh
-      env:
-        STEP_LEVEL_2: "STEP level 2"
+      if: matrix.os == 'windows-latest'
       run: |
         echo "Hello World from step 2"
+        echo "Window environment"
 
+        echo "OS : ${{ matrix.os }}"
+        echo "nodejs version: ${{ matrix.nodejs }}"
 
 
   second-job:
