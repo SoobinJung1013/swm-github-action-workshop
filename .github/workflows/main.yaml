@@ -7,21 +7,32 @@ jobs:
     name: 'Send a message to Webex message'
     runs-on: 'ubuntu-latest'
     steps:
-    - name: Say Hello World 1 
-      shell: bash
-      run: |
-        echo "Hello World Build N Test"
-        curl -X POST 'https://webexapis.com/v1/messages' \
-          -H 'Authorization: Bearer ${{ secrets.WEBEX_ACCESS_TOKEN }}' \
-          -H 'Content-type: application/json' \
-          -d '{
-              "roomId": "${{ secrets.WEBEX_ROOM_ID }}",
-              "text": "Message - FROM GITHUB ACTION ✨"
-          }'
+    - name: Checkout codes
+      uses: actions/checkout@v3
 
-    - name: Post Message to Webex Room
-      uses: chrivand/action-webex-js@main
-      env:
-        WEBEX_TOKEN: ${{ secrets.WEBEX_ACCESS_TOKEN }}
-        WEBEX_ROOM_ID: ${{ secrets.WEBEX_ROOM_ID }}
-        MARKDOWN_MESSAGE: "**Hello, world! You just ran an action from ${{ github.repository }}.**"
+    # - name: Say Hello World 1 
+    #   shell: bash
+    #   run: |
+    #     echo "Hello World Build N Test"
+    #     curl -X POST 'https://webexapis.com/v1/messages' \
+    #       -H 'Authorization: Bearer ${{ secrets.WEBEX_ACCESS_TOKEN }}' \
+    #       -H 'Content-type: application/json' \
+    #       -d '{
+    #           "roomId": "${{ secrets.WEBEX_ROOM_ID }}",
+    #           "text": "Message - FROM GITHUB ACTION ✨"
+    #       }'
+
+    # - name: Post Message to Webex Room
+    #   uses: chrivand/action-webex-js@main
+    #   env:
+    #     WEBEX_TOKEN: ${{ secrets.WEBEX_ACCESS_TOKEN }}
+    #     WEBEX_ROOM_ID: ${{ secrets.WEBEX_ROOM_ID }}
+    #     MARKDOWN_MESSAGE: "**Hello, world! You just ran an action from ${{ github.repository }}.**"
+
+    - name: Send message from customer
+      uses: .github/actions@main
+      with: 
+        webexToken: ${{ secrests.WEBEX_ACCESS_TOKEN }}
+        webexRoomId: ${{ secrets.WEBEX_ROOM_ID }}
+        bodyText: 'Message sent by Github Actions from ${{ github.repository }}✨'
+        bodyMarkdown: '**actions from ${{ github.repository }} 🐳'
