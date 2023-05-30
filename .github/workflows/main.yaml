@@ -5,12 +5,9 @@ on: push
 jobs:
   build-test:
     name: 'Build & Test'
-
     runs-on: 'ubuntu-latest'
-
     steps:
     - name: Say Hello World 1 
-      
       shell: bash
       run: |
         echo "Hello World Build N Test"
@@ -20,10 +17,8 @@ jobs:
     needs:
       - build-test 
     runs-on: 'ubuntu-latest'
-    
     steps:
     - name: Say Hello World 2
-      
       shell: bash
       run: |
         echo "Hello World Deploy to dev"
@@ -33,7 +28,6 @@ jobs:
     needs:
       - deploy-dev
     runs-on: 'ubuntu-latest'
-
     steps:
     - name: Say Hello World 3
       
@@ -46,10 +40,8 @@ jobs:
     needs:
       - deploy-dev
     runs-on: 'ubuntu-latest'
-
     steps:
     - name: Say Hello World 4
-      
       shell: bash
       run: |
         echo "Hello World Deploy to staging-2"
@@ -60,10 +52,8 @@ jobs:
       - deploy-staging-1
       - deploy-staging-2
     runs-on: 'ubuntu-latest'
-
     steps:
     - name: Say Hello World 5
-      
       shell: bash
       run: |
         echo "Hello World Deploy to prod"
