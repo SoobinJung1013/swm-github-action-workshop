@@ -9,7 +9,11 @@ jobs:
   first-job:
     name: 'First Job'
 
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: ['ubuntu-latest', 'windows-latest', 'macos-latest']
+
+    runs-on: ${{ matrixs.os }}
 
     env:
       JOB_LEVEL_1: "JOB LEVEL VALUE 1"
@@ -22,13 +26,7 @@ jobs:
       run: |
         echo "Hello World from step 1"
 
-        random_value="swm$(echo $RANDOM)"
-
-        echo "::add-mask::$random_value"
-
-        echo "STEP_VALUE= $random_value" >> $GITHUB_OUTPUT
-
-        echo "API KEY : ${{ steps.API_KEY }}"
+        echo "OS : ${{ matrix.os }}"
 
     - name: Say Hello World 1-2
       shell: pwsh
@@ -36,7 +34,6 @@ jobs:
         STEP_LEVEL_2: "STEP level 2"
       run: |
         echo "Hello World from step 2"
-        echo "STEP_VALUE: ${{ steps.helloworld1.outputs.STEP_VALUE }}"
 
 
 
@@ -57,12 +54,7 @@ jobs:
         echo "Hello World from step 3"
         echo "${{ steps.API_KEY }}"
         echo "global level: $GLOBAL_LEVEL"
-        echo "job level: ${{ env.JOB_LEVEL_1 }}"
-        echo "job level: ${{ env.JOB_LEVEL_2 }}"
-        echo "job level: ${{ env.STEP_LEVEL_1 }}"
-        echo "job level: ${{ env.STEP_LEVEL_2 }}"
-        echo "job level: ${{ env.STEP_LEVEL_3 }}"
-        echo "job level: ${{ env.STEP_LEVEL_4 }}"
+
 
     - name: Say Hello World 2-2
       shell: pwsh
@@ -71,9 +63,3 @@ jobs:
       run: |
         echo "Hello World from step 4"
         echo "global level: $env:GLOBAL_LEVEL"
-        echo "job level: ${{ env.JOB_LEVEL_1 }}"
-        echo "job level: ${{ env.JOB_LEVEL_2 }}"
-        echo "job level: ${{ env.STEP_LEVEL_1 }}"
-        echo "job level: ${{ env.STEP_LEVEL_2 }}"
-        echo "job level: ${{ env.STEP_LEVEL_3 }}"
-        echo "job level: ${{ env.STEP_LEVEL_4 }}"
