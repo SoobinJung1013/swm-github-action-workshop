@@ -4,58 +4,18 @@ on: push
 
 jobs:
   build-test:
-    name: 'Build & Test'
+    name: 'Send a message to Webex message'
     runs-on: 'ubuntu-latest'
     steps:
     - name: Say Hello World 1 
       shell: bash
       run: |
         echo "Hello World Build N Test"
-
-  deploy-dev:
-    name: 'Deploy to dev'
-    needs:
-      - build-test 
-    runs-on: 'ubuntu-latest'
-    steps:
-    - name: Say Hello World 2
-      shell: bash
-      run: |
-        echo "Hello World Deploy to dev"
-
-  deploy-staging-1:
-    name: 'Deploy to staging'
-    needs:
-      - deploy-dev
-    runs-on: 'ubuntu-latest'
-    steps:
-    - name: Say Hello World 3
-      
-      shell: bash
-      run: |
-        echo "Hello World Deploy to staging-1"
-
-  deploy-staging-2:
-    name: 'Deploy to staging 2'
-    needs:
-      - deploy-dev
-    runs-on: 'ubuntu-latest'
-    steps:
-    - name: Say Hello World 4
-      shell: bash
-      run: |
-        echo "Hello World Deploy to staging-2"
-
-  deploy-prod:
-    name: 'Deploy to prod'
-    needs:
-      - deploy-staging-1
-      - deploy-staging-2
-    runs-on: 'ubuntu-latest'
-    steps:
-    - name: Say Hello World 5
-      shell: bash
-      run: |
-        echo "Hello World Deploy to prod"
-
-
+        curl -X POST https://webexapis.com/v1/messages \
+          -H "Authorization: Bearer ${{ secrets.WEBX_ACCESS_TOKEN }}" \
+          -H "Content-type: application/json" \
+          -d "{
+            {
+              "roomId": "${{ secrets.WEBEX_ROOM_ID }}"",
+              "text": "스타벅스 ☕️ - FROM GITHUB ACTION ✨"
+          }"
