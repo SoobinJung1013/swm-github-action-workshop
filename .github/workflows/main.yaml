@@ -28,6 +28,8 @@ jobs:
 
         echo "STEP_VALUE= $random_value" >> $GITHUB_OUTPUT
 
+        echo "API KEY : ${{ steps.API_KEY }}"
+
     - name: Say Hello World 1-2
       shell: pwsh
       env:
@@ -53,6 +55,7 @@ jobs:
         STEP_LEVEL_3: "STEP level 3"
       run: |
         echo "Hello World from step 3"
+        echo "${{ steps.API_KEY }}"
         echo "global level: $GLOBAL_LEVEL"
         echo "job level: ${{ env.JOB_LEVEL_1 }}"
         echo "job level: ${{ env.JOB_LEVEL_2 }}"
