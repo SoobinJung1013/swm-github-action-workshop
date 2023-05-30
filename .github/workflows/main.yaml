@@ -15,7 +15,6 @@ jobs:
           -H 'Authorization: Bearer ${{ secrets.WEBEX_ACCESS_TOKEN }}' \
           -H 'Content-type: application/json' \
           -d '{
-            {
               "roomId": "${{ secrets.WEBEX_ROOM_ID }}",
               "text": "스타벅스 ☕️☕️☕️ - FROM GITHUB ACTION ✨"
           }'
