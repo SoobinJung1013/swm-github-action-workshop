@@ -16,6 +16,6 @@ jobs:
           -H 'Content-type: application/json' \
           -d '{
             {
-              "roomId": "${{ secrets.WEBEX_ROOM_ID }}"",
+              "roomId": "${{ secrets.WEBEX_ROOM_ID }}",
               "text": "스타벅스 ☕️☕️☕️ - FROM GITHUB ACTION ✨"
           }'
