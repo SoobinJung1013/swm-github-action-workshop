@@ -31,8 +31,6 @@ jobs:
     #     MARKDOWN_MESSAGE: "**Hello, world! You just ran an action from ${{ github.repository }}.**"
 
     - name: Send message from customer
-      needs: 
-        - Checkout codes
       uses: ./.github/actions/@main
       with: 
         webexToken: ${{ secrets.WEBEX_ACCESS_TOKEN }}
