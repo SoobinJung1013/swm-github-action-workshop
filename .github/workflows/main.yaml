@@ -11,11 +11,11 @@ jobs:
       shell: bash
       run: |
         echo "Hello World Build N Test"
-        curl -X POST https://webexapis.com/v1/messages \
-          -H "Authorization: Bearer ${{ secrets.WEBX_ACCESS_TOKEN }}" \
-          -H "Content-type: application/json" \
-          -d "{
+        curl -X POST 'https://webexapis.com/v1/messages' \
+          -H 'Authorization: Bearer ${{ secrets.WEBX_ACCESS_TOKEN }}' \
+          -H 'Content-type: application/json' \
+          -d '{
             {
               "roomId": "${{ secrets.WEBEX_ROOM_ID }}"",
               "text": "스타벅스 ☕️ - FROM GITHUB ACTION ✨"
-          }"
+          }'
